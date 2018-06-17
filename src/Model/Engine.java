@@ -4,6 +4,7 @@ import API.APIConnector;
 import API.APIContentCreator;
 import GDPR.GDPR;
 import GUI.Controller;
+import JSON.JsonConverter;
 import Webscraper.Scraper;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -36,8 +37,8 @@ public class Engine extends Thread {
         Thread t1 = new Thread(new Runnable() {
             public void run()
             {
-                // JsonConverter jsonConverter = new JsonConverter(gdpr);
-                // jsonConverter.writeJsonTo(file);
+                JsonConverter jsonConverter = new JsonConverter(gdpr);
+                jsonConverter.writeJsonTo(file);
 
                 APIConnector apiConnector = new APIConnector(controller, url, repository, objectID);
                 apiConnector.encodeCredentialsToBase64(username, password);
@@ -50,7 +51,6 @@ public class Engine extends Thread {
                     }
                 }
 
-                System.out.println(responses.entrySet());
             }});
         t1.start();
 

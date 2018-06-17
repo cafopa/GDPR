@@ -53,9 +53,8 @@ public class APIContentCreator {
             StringBuilder stringBuilder = new StringBuilder();
 
             article.getText().forEach(s -> {
-                char c = s.substring(0, 1).charAt(0);
-                if (Character.isDigit(c)){
-                    if (Integer.parseInt(s.substring(0,1)) != 1) {
+                if (Character.isDigit(s.substring(0, 1).charAt(0))) {
+                    if (Integer.parseInt(s.substring(0, 1)) != 1) {
                         stringBuilder.append("\\n");
                         stringBuilder.append(s);
                         stringBuilder.append("\\n");
@@ -63,6 +62,9 @@ public class APIContentCreator {
                         stringBuilder.append(s);
                         stringBuilder.append("\\n");
                     }
+                } else {
+                    stringBuilder.append(s);
+                    stringBuilder.append("\\n");
                 }
             });
 
